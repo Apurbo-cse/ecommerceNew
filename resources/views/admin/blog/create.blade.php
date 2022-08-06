@@ -6,7 +6,7 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="page-header-title">
-                <h4 class="pull-left page-title">Fair & Trade</h4>
+                <h4 class="pull-left page-title">Blog </h4>
                 <ol class="breadcrumb pull-right">
                     <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
                     <li><a href="{{route('admin.blog.index')}}">All blog</a></li>
