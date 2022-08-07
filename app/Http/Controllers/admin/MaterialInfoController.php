@@ -116,6 +116,7 @@ class MaterialInfoController extends Controller
             $file->move($path, $file_name);
             $data['image'] = $path . '/' . $file_name;
         }
+        
         $data->save();
         Toastr::success('Material Info successfully updated', 'Success');
         return redirect()->route('admin.materialInfo.index');

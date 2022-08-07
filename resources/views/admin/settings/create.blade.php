@@ -9,7 +9,7 @@
                 <h4 class="pull-left page-title">Create settings</h4>
                 <ol class="breadcrumb pull-right">
                     <li><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
-                    <li><a href="{{route('admin.categories.index')}}">All settings</a></li>
+                    <li><a href="{{route('admin.settings.index')}}">All settings</a></li>
                     <li class="active">New settings</li>
                 </ol>
                 <div class="clearfix"></div>
@@ -149,9 +149,9 @@
 
                                 <div class="form-group">
                                     <label for="image">Logo</label>
-                                    <input type="file" name="logo" value="{{ old('logo') }}" class="form-control @error('logo') is-invalid @enderror">
+                                    <input type="file" name="image" value="{{ old('image') }}" class="form-control @error('image') is-invalid @enderror">
                                 </div>
-                                @error('logo')
+                                @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
 

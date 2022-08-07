@@ -29,7 +29,7 @@ Route::group(['as'=>'admin.','prefix'=>'admin', 'namespace'=>'admin', 'middlewar
     Route::resource('subcategories', SubCategoryController::class);
     Route::resource('tags', TagController::class);
     Route::resource('sliders', SliderController::class);
-    Route::resource('settings', SettingController::class);
+    Route::resource('settings', SettingsController::class);
     Route::resource('products', ProductController::class);
     Route::resource('contact', ContactUsController::class);
     Route::resource('newsletter', NewsletterController::class);
