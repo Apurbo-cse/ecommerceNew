@@ -17,13 +17,14 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('slug');
-            $table->string('short_desc');
-            $table->text('details');
+            $table->string('product_id')->nullable();
+            $table->string('short_desc')->nullable();
+            $table->text('details')->nullable();
             $table->string('image');
             $table->string('image_two')->nullable();
             $table->string('image_three')->nullable();
-            $table->float('regular_price', 8, 2);
-            $table->float('offer_price', 8, 2);
+            $table->float('regular_price', 8, 2)->nullable();
+            $table->float('offer_price', 8, 2)->nullable();
             $table->float('avg_review', 2, 1)->nullable()->default(0);
             $table->float('total_sell', 8, 2)->default(0);
             $table->string('size');

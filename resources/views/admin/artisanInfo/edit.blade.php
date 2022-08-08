@@ -53,17 +53,33 @@
 
 
                                 <div class="form-group">
-                                    <label for="goal_image">Old image</label>
+                                    <label for="image">Old image</label>
                                     <img src="{{asset($artisanInfo->image)}}" alt="course thumbnail" class="img-responsive w-lg" style="height: 100px; width: 200px">
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="goal_image">Image</label>
-                                    <input type="file" name="goal_image" value="{{ old('image') }}" class="form-control @error('image') is-invalid @enderror">
+                                    <label for="image">Image</label>
+                                    <input type="file" name="image" value="{{ old('image') }}" class="form-control @error('image') is-invalid @enderror">
                                 </div>
                                 @error('image')
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
+
+
+                                <div class="form-group">
+                                    <label for="image">Old image</label>
+                                    <img src="{{asset($artisanInfo->image_two)}}" alt="course thumbnail" class="img-responsive w-lg" style="height: 100px; width: 200px">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="image_two">Image Two</label>
+                                    <input type="file" name="image_two" value="{{ old('image_two') }}" class="form-control @error('image_two') is-invalid @enderror">
+                                </div>
+                                @error('image_two')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+                                
+                               
 
                                 <button type="submit" class="btn btn-success waves-effect waves-light">Submit</button>
                                 <a href="{{route('admin.artisanInfo.index')}}" class="btn btn-info waves-effect waves-light">Back</a>

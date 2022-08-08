@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use phpDocumentor\Reflection\Types\Nullable;
 
 class CreateArtisanInfosTable extends Migration
 {
@@ -18,6 +19,7 @@ class CreateArtisanInfosTable extends Migration
             $table->text('desc');
             $table->text('sub_desc')->nullable();
             $table->string('image');
+            $table->string('image_two')->nullable();
             $table->timestamps();
         });
     }

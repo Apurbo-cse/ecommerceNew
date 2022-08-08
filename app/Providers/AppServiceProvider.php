@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Category;
-use App\Setting;
+use App\NewSetting;
 use App\SubCategory;
 use Illuminate\Support\ServiceProvider;
 
@@ -34,7 +34,7 @@ class AppServiceProvider extends ServiceProvider
         });
 
         view()->composer('*', function ($view) {
-            $info = Setting::find(1, ['phone', 'email', 'address', 'about']);
+            $info = NewSetting::find(1, ['phone', 'email', 'address', 'about','image']);
             $view->with('info', $info);
         });
     }

@@ -22,7 +22,7 @@
 
             <div class="col-lg-6 col-12">
                     <div class="about-content">
-                        <h3>Materials <span></span></h3>
+                        <h3>Materials <span>&</span> Techniques Info</h3>
                         <p style="text-align: justify;" data-rm-words="50">
                         <div style="text-align: justify;" >
                         {!! $materialInfo->description !!}
@@ -37,7 +37,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-12 col-12 mt-3 mb-4">
+                <!-- <div class="col-lg-12 col-12 mt-3 mb-4">
                     <div class="about-content"> 
                         <h3>Techniques <span></span></h3>
                         <p style="text-align: justify;" data-rm-words="50">
@@ -45,7 +45,7 @@
                         {!! $materialInfo->tech_description !!}
                         </div>
                     </div>
-                </div>
+                </div> -->
 
             </div>
 

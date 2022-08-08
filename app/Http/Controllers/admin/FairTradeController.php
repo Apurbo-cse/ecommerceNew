@@ -56,6 +56,7 @@ class FairTradeController extends Controller
         $path = 'assets/admin/images/fairTrade/';
         $image->move($path, $imagename);
         $data->image = $path.$imagename;
+        
         $data->status = $request->status;
         $data->save();
         Toastr::success('FairTrade successfully create', 'Success');

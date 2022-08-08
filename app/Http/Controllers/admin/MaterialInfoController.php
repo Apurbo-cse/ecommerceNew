@@ -50,14 +50,14 @@ class MaterialInfoController extends Controller
 
         $data->description = $request->description;
         $data->tech_description = $request->tech_description;
+       
+        $time = time();
 
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $path = 'images/material';
-            $file_name = time() . $file->getClientOriginalName();
-            $file->move($path, $file_name);
-            $data['image'] = $path . '/' . $file_name;
-        }
+       $image = $request->file('image');
+        $imagename = time().'_material_x.'.$image->getClientOriginalExtension();
+        $path = 'images/material/';
+        $image->move($path, $imagename);
+        $data->image = $path.$imagename;
 
         $data->save();
         Toastr::success('Product successfully create', 'Success');
@@ -101,7 +101,6 @@ class MaterialInfoController extends Controller
         $request->validate([
 
             'description' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg,JPG',
         
         ]);
 
@@ -109,13 +108,23 @@ class MaterialInfoController extends Controller
         $data->description = $request->description;
         $data->tech_description = $request->tech_description;
 
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $path = 'images/material';
-            $file_name = time() . $file->getClientOriginalName();
-            $file->move($path, $file_name);
-            $data['image'] = $path . '/' . $file_name;
+        $time = time();
+
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $imagename = $time . 'material_x.' . $image->getClientOriginalExtension();
+            $path = 'images/material/';
+
+            if (file_exists(public_path($data->image))) {
+                unlink(public_path($data->image));
+            }
+
+            $image->move($path, $imagename);
+            $img_x = $path . $imagename;
+        }else{
+            $img_x = $data->image;
         }
+        $data->image = $img_x;
         
         $data->save();
         Toastr::success('Material Info successfully updated', 'Success');

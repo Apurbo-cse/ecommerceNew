@@ -7,8 +7,8 @@
                     <!-- Single Widget -->
                     <div class="single-footer about">
                         <div class="logo">
-                            <!-- <a href="index.html"><img src="https://pallicraftsltd.com/backend/img/logo2.png" alt="#"></a> -->
-                            <h3 class="text-light">Pallicrafts LTD</h3>
+                            <!-- <a href="index.html"><img src="{{asset($info->image)}}" width="100" height="20" alt="#"></a> -->
+                            <h3 class="text-light">Palli Crafts LTD</h3>
                         </div>
                         <p class="text">
                         <p>{!! \Illuminate\Support\Str::limit($info->about, 150, $end='...') !!}<a style="color: #f7f5f2; margin-left: 15px;" href="{{route('about')}}">Read more</a></p>

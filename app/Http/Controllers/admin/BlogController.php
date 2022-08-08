@@ -51,9 +51,10 @@ class BlogController extends Controller
 
         $image = $request->file('image');
         $imagename = time().'_blog.'.$image->getClientOriginalExtension();
-        $path = 'assets/admin/images/blog/';
+        $path = 'assets/blog/';
         $image->move($path, $imagename);
         $data->image = $path.$imagename;
+        
         $data->status = $request->status;
         $data->save();
         Toastr::success('Blog successfully create', 'Success');
@@ -104,6 +105,7 @@ class BlogController extends Controller
         $blog= Blog::findOrFail($id);
         $blog->title = $request->title;
         $blog->details = $request->details;
+
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = time().'_blog.'.$file->getClientOriginalExtension();
@@ -111,12 +113,13 @@ class BlogController extends Controller
             if (file_exists(public_path($blog->image))) {
                 unlink(public_path($blog->image));
             }
-            $path = 'assets/admin/images/blog/';
+            $path = 'assets/blog/';
             $file->move($path, $fileName);
             $blog_path = $path.$fileName;
         }else{
             $blog_path = $blog->image;
         }
+
         $blog->image = $blog_path;
         $blog->status = $request->status;
 

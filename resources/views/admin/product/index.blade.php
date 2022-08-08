@@ -51,6 +51,7 @@
                                     <th>Title</th>
                                     <th style="width: 35%">Short Desc</th>
                                     <th>Image</th>
+                                    <th>Product Id</th>
                                     <th>Regular price</th>
                                     <th>Offer price</th>
                                     <th>Stock</th>
@@ -66,6 +67,7 @@
                                         <td>{{$product->title}}</td>
                                         <td>{{$product->short_desc}}</td>
                                         <td><img src="{{asset($product->image)}}" alt="category Image" style="width: 110px;"></td>
+                                        <td>{{$product->product_id}}</td>
                                         <td>{{$product->regular_price}}</td>
                                         <td>{{$product->offer_price}}</td>
                                         <td>{{$product->stock}}</td>

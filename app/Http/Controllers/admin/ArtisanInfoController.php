@@ -49,18 +49,25 @@ class ArtisanInfoController extends Controller
 
         $data->desc = $request->desc;
         $data->sub_desc = $request->sub_desc;
+        
+        $time = time();
 
-        if ($request->hasfile('image')) {
-            $file = $request->file('image');
-            $path = 'images/artisans';
-            $file_name = time() . $file->getClientOriginalName();
-            $file->move($path, $file_name);
-            $data['image'] = $path . '/' . $file_name;
-        }
+        $image = $request->file('image');
+        $imagename = time().'_artisan_one.'.$image->getClientOriginalExtension();
+        $path = 'images/artisan/';
+        $image->move($path, $imagename);
+        $data->image = $path.$imagename;
+
+        $image = $request->file('image_two');
+        $imagename_two= $time.'_artisan_two.'.$image->getClientOriginalExtension();
+        $path = 'images/artisan/';
+        $image->move($path, $imagename_two);
+        $data->image_two = $path.$imagename_two;
+
 
         $data->save();
         Toastr::success('Product successfully create', 'Success');
-        return redirect()->route('admin.fairTradeInfo.index');
+        return redirect()->route('admin.artisanInfo.index');
     }
 
     /**
@@ -87,6 +94,7 @@ class ArtisanInfoController extends Controller
     }
 
     /**
+     * 
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -98,28 +106,51 @@ class ArtisanInfoController extends Controller
         $request->validate([
             
             'desc' => 'required',
-            'image' => 'required|mimes:jpeg,png,jpg,JPG',
         ]);
 
         $artisanInfo = ArtisanInfo::findOrFail($id);
 
+
+        $artisanInfo->desc = $request->desc;
+        $artisanInfo->sub_desc = $request->sub_desc;
+         $time = time();
+
         if ($request->hasFile('image')) {
             $image = $request->file('image');
-            $imagename = time().'_artisanInfo.'.$image->getClientOriginalExtension();
-            $path = 'assets/admin/images';
+            $imagename = $time . '_artisan_one.' . $image->getClientOriginalExtension();
+            $path = 'images/artisan/';
 
             if (file_exists(public_path($artisanInfo->image))) {
                 unlink(public_path($artisanInfo->image));
             }
-            $image->move($path, $imagename);
-            $img = $path.$imagename;
-        }else{
-            $img = $artisanInfo->image;
-        }
 
-        $artisanInfo->desc = $request->desc;
-        $artisanInfo->sub_desc = $request->sub_desc;
-        $artisanInfo->image = $img;
+            $image->move($path, $imagename);
+            $img_one = $path . $imagename;
+        }else{
+            $img_one = $artisanInfo->image;
+        }
+        $artisanInfo->image = $img_one;
+        
+
+        if ($request->hasFile('image_two')) {
+            $image = $request->file('image_two');
+            $imagename_two = $time . '_artisan_two.' . $image->getClientOriginalExtension();
+            $path = 'images/artisan/';
+
+            if (file_exists(public_path($artisanInfo->image_two))) {
+                unlink(public_path($artisanInfo->image_two));
+            }
+
+            $image->move($path, $imagename_two);
+            $img_two = $path . $imagename_two;
+        }else{
+            $img_two = $artisanInfo->image_two;
+        }
+        
+        $artisanInfo->image_two = $img_two;
+
+
+        
         $artisanInfo->save();
         Toastr::success('Artisan information successfully updated', 'Success');
         return redirect()->route('admin.artisanInfo.index');

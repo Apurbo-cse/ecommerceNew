@@ -48,6 +48,14 @@
                                 @enderror
 
                                 <div class="form-group">
+                                    <label for="product_id">Product Id</label>
+                                    <input type="text" name="product_id" value="{{$product->product_id ? $product->product_id : old('product_id') }}" class="form-control @error('product_id') is-invalid @enderror" placeholder="Enter regular price">
+                                </div>
+                                @error('product_id')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
+                                <div class="form-group">
                                     <label for="regular_price">Regular price</label>
                                     <input type="text" name="regular_price" value="{{$product->regular_price ? $product->regular_price : old('regular_price') }}" class="form-control @error('regular_price') is-invalid @enderror" placeholder="Enter regular price">
                                 </div>

@@ -58,6 +58,17 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror
 
+
+                                <div class="form-group">
+                                    <label for="image">Artisans Info image</label>
+                                    <input type="file" name="image_two" value="{{ old('image_two') }}" class="form-control @error('image_two') is-invalid @enderror">
+                                </div>
+                                @error('image_two')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror
+
+
+
                                 <button type="submit" class="btn btn-success waves-effect waves-light">Submit</button>
                                 <a href="{{route('admin.artisanInfo.index')}}" class="btn btn-info waves-effect waves-light">Back</a>
                             </form>

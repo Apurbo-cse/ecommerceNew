@@ -54,8 +54,7 @@ class ProductController extends Controller
             'title' => 'required|unique:products,title',
             'short_desc' => 'required',
             'details' => 'required',
-            'regular_price' => 'required',
-            'offer_price' => 'required',
+            
             'stock' => 'required',
             'size' => 'required',
             'is_featured' => 'required',
@@ -71,6 +70,8 @@ class ProductController extends Controller
         $data = new Product();
         $data->title = $request->title;
         $data->slug = Str::slug($request->title);
+        $data->product_id = $request->product_id;
+
         $data->short_desc = $request->short_desc;
         $data->details = $request->details;
         $data->regular_price = $request->regular_price;
@@ -155,14 +156,19 @@ class ProductController extends Controller
      */
 
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
+
+        
+
+        $data = Product::findOrFail($id);
+
         $request->validate([
-            'title' => "required|unique:products,title, $product->id",
+
+            'title' => "required|unique:products,title, $data->id",
             'short_desc' => 'required',
             'details' => 'required',
-            'regular_price' => 'required',
-            'offer_price' => 'required',
+            
             'stock' => 'required',
             'size' => 'required',
             'is_featured' => 'required',
@@ -173,6 +179,9 @@ class ProductController extends Controller
             'image' => 'mimes:jpeg,png,jpg,JPG',
 
         ]);
+
+
+        $data = Product::findOrFail($id);
 
         $data['title'] = $request->title;
         $data['slug'] = Str::slug($request->title);
@@ -213,7 +222,7 @@ class ProductController extends Controller
             $data['image_three'] = $path . '/' . $file_name;
         }
 
-        $product->save();
+        $data->save();
         Toastr::success('Product successfully udated', 'Success');
         return redirect()->route('admin.products.index');
 

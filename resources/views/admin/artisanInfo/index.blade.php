@@ -40,6 +40,10 @@
                                     <td style="width: 15%;">Image</td>
                                     <td><img src="{{asset($artisanInfo->image)}}" alt="logo" style="width: 110px;"></td>
                                 </tr>
+                                <tr>
+                                    <td style="width: 15%;">Image</td>
+                                    <td><img src="{{asset($artisanInfo->image_two)}}" alt="logo" style="width: 110px;"></td>
+                                </tr>
 
                                 <tr>
                                     <td>Action</td>

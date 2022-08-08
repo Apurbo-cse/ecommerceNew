@@ -11,12 +11,12 @@ use App\Material;
 use App\MaterialInfo;
 use App\Membership;
 use App\Product;
-use App\Setting;
 use App\Slider;
 use App\SubCategory;
 use App\Video;
 use App\Blog;
 use App\fairTradeInfo;
+use App\NewSetting;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -34,7 +34,7 @@ class HomeController extends Controller
 
     public function about()
     {
-        $about_us = Setting::select('about')->first();
+        $about_us = NewSetting::select('about')->first();
         $about_info = About::first();
         $memberships = Membership::where('status', '1')->orderBy('title', 'ASC')->get();
         return view('frontend.about', compact('about_us', 'about_info', 'memberships'));
@@ -90,13 +90,13 @@ class HomeController extends Controller
     }
     public function contact()
     {
-        $contact_us = Setting::select(['phone', 'email', 'address', 'google_map_link'])->first();
+        $contact_us = NewSetting::select(['phone', 'email', 'address','image', 'google_map_link'])->first();
         return view('frontend.contact', compact('contact_us'));
     }
     public function productDetails($id)
     {
         $product = Product::where('id', $id)->first();
-        $contactInfo = Setting::find(1, ['whatsapp_link', 'email']);
+        $contactInfo = NewSetting::find(1, ['whatsapp_link', 'email']);
         $relatedProducts = Product::where('category_id', $product->category_id)->where('status', '1')->orderBy('id', 'DESC')->limit(6)->select(['id', 'title', 'offer_price','image', 'regular_price'])->whereId('id', '==', $product->id)->get();
         return view('frontend.product_details', compact('product', 'relatedProducts', 'contactInfo'));
     }

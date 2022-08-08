@@ -5,9 +5,11 @@
                 <!-- Top Left -->
                 <div class="top-left">
                     <ul class="list-main">
-                        {{--{{$info}}--}}
+                        
                         <li><i class="ti-headphone-alt"></i> {{$info->phone}} </li>
                         <li><i class="ti-email"></i> {{$info->email}} </li>
+
+                        
                     </ul>
                 </div>
                 <!--/ End Top Left -->
@@ -42,7 +44,7 @@
                 <!-- Logo -->
                 <div class="logo">
 
-                    <a href="{{ route('home') }}"><img src="{{asset('assets/frontend')}}/img/Logo-02 png.png" class="image-fluid"
+                    <a href="{{ route('home') }}"><img src="{{asset($info->image)}}" class="image-fluid"
                                               style="margin-top:-65px" alt="logo"></a>
                 </div>
                 <!--/ End Logo -->
